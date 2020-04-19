@@ -23,7 +23,6 @@ public class Line_Render : MonoBehaviour
     public bool isadded = false;
     void Start()
     {
-        linerender = GetComponent<LineRenderer>();
         linerender.SetWidth(0.2f,0.2f);
     }
 
