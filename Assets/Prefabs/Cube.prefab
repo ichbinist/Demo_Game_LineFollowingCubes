@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 6202682839647175760}
   - component: {fileID: 3888544005906981590}
   - component: {fileID: 3127841784897715253}
+  - component: {fileID: -3062142223039264579}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: cube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +31,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8431092521675825157}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -89,7 +91,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2231195955061640065}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -110,4 +112,108 @@ MonoBehaviour:
     type: 3}
   finishingPoint: {fileID: 5450943292744097304, guid: 0121e7d84b3159442b18f698febfe3b1,
     type: 3}
-  linePoints: []
+  speed: 4
+  position: {x: 0, y: 0, z: 0}
+  linePoints:
+  - {fileID: 9095303081605824224}
+  linerender: {fileID: 0}
+  collision: 0
+  isfinished: 0
+  isadded: 0
+--- !u!54 &-3062142223039264579
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2231195955061640065}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!1001 &2505316377621094751
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4099581111126795395}
+    m_Modifications:
+    - target: {fileID: 6324718547178242394, guid: 32457660daf39da4abec9cedce5de351,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324718547178242394, guid: 32457660daf39da4abec9cedce5de351,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324718547178242394, guid: 32457660daf39da4abec9cedce5de351,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324718547178242394, guid: 32457660daf39da4abec9cedce5de351,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324718547178242394, guid: 32457660daf39da4abec9cedce5de351,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324718547178242394, guid: 32457660daf39da4abec9cedce5de351,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324718547178242394, guid: 32457660daf39da4abec9cedce5de351,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324718547178242394, guid: 32457660daf39da4abec9cedce5de351,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324718547178242394, guid: 32457660daf39da4abec9cedce5de351,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324718547178242394, guid: 32457660daf39da4abec9cedce5de351,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324718547178242394, guid: 32457660daf39da4abec9cedce5de351,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700698799678136255, guid: 32457660daf39da4abec9cedce5de351,
+        type: 3}
+      propertyPath: m_Name
+      value: DrawingPoint
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 32457660daf39da4abec9cedce5de351, type: 3}
+--- !u!1 &9095303081605824224 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6700698799678136255, guid: 32457660daf39da4abec9cedce5de351,
+    type: 3}
+  m_PrefabInstance: {fileID: 2505316377621094751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8431092521675825157 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6324718547178242394, guid: 32457660daf39da4abec9cedce5de351,
+    type: 3}
+  m_PrefabInstance: {fileID: 2505316377621094751}
+  m_PrefabAsset: {fileID: 0}
