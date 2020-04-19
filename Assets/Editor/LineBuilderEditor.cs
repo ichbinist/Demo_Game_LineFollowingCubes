@@ -19,6 +19,9 @@ public class LineBuilderEditor : Editor
           {
               script.resetPoints();
           }
-
+          if(GUILayout.Button("Add Points to Line "))
+          {
+              script.PointsToLine();
+          }
       }
 }

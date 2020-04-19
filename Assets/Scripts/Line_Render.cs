@@ -32,11 +32,24 @@ public class Line_Render : MonoBehaviour
       Addedobject.transform.parent = transform;
       linePoints.Add(Addedobject);
     }
+    public void PointsToLine(){
+      if(gameObject.GetComponent<LineRenderer>() == null){
+        linerender = gameObject.AddComponent<LineRenderer>();
+      }else{
+      linerender.SetVertexCount(linePoints.Count);
+      for (int i = 0; i < linePoints.Count; i++){
+       linerender.SetPosition(i, linePoints[i].transform.position);
+      }
+    }
+
+    }
 
     public void resetPoints(){
       foreach(GameObject linePoint in linePoints){DestroyImmediate(linePoint);}
+      linerender.SetVertexCount(0);
       linePoints.Clear();
     }
+
     void Update()
     {
 
