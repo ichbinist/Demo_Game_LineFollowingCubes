@@ -113,6 +113,8 @@ MonoBehaviour:
     type: 3}
   finishingPoint: {fileID: 5450943292744097304, guid: 0121e7d84b3159442b18f698febfe3b1,
     type: 3}
+  stopPoint: {fileID: 8194571345831256520, guid: 9ff09bf2aa39541409e57a9eb9d3c494,
+    type: 3}
   collision: 0
   isfinished: 0
   isadded: 0

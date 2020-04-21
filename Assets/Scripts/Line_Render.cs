@@ -8,6 +8,7 @@ public class Line_Render : MonoBehaviour
     //Publics
     public GameObject linePoint;
     public GameObject finishingPoint;
+    public GameObject stopPoint;
     public bool collision = false;
     public bool isfinished = false;
     public bool isadded = false;
@@ -35,20 +36,24 @@ public class Line_Render : MonoBehaviour
     }
 
     public void addPoint(){
-      linerender = GetComponent<LineRenderer>();
       GameObject Addedobject = Instantiate(linePoint, transform.position+position, Quaternion.identity);
       linePoints.Add(Addedobject);
     }
 
     public void addEnd(){
-
       GameObject Addedobject = Instantiate(finishingPoint, transform.position+position, Quaternion.identity);
       linePoints.Add(Addedobject);
     }
 
+    public void addStop(){
+      GameObject Addedobject = Instantiate(stopPoint, transform.position+position, Quaternion.identity);
+      linePoints.Add(Addedobject);
+      }
+
     public void PointsToLine(){
       if(gameObject.GetComponent<LineRenderer>() == null){
-        linerender = gameObject.AddComponent<LineRenderer>();
+        gameObject.AddComponent<LineRenderer>();
+        linerender = GetComponent<LineRenderer>();
         linerender.SetVertexCount(linePoints.Count);
         for (int i = 0; i < linePoints.Count; i++){
          linerender.SetPosition(i, linePoints[i].transform.position);
@@ -65,14 +70,14 @@ public class Line_Render : MonoBehaviour
     }
 
     void OnMouseDown(){
-     startMovement();
+     startMovement(true);
      foreach(GameObject obstacle in obstacles){
        obstacle.GetComponent<Obstacle_Control>().switchactive();
      }
   }
 
-    void startMovement(){
-      movestart = true;
+    void startMovement(bool start){
+      movestart = start;
     }
 
     public void resetPoints(){
@@ -99,11 +104,20 @@ public class Line_Render : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
    {
+     bool colTrigger = false;
      Debug.Log("Collision");
       if (other.CompareTag("cube")){
         Application.LoadLevel(Application.loadedLevel);
-      }else if (!other.CompareTag("point") && other.transform.parent.CompareTag("obstacle") && other.transform.parent.GetComponent<Obstacle_Control>().active){
+      }else if (other.CompareTag("obstacle") && other.GetComponent<Obstacle_Control>().active){
         Application.LoadLevel(Application.loadedLevel);
+      }else if(other.CompareTag("stop")){
+        foreach(GameObject stopPoint in linePoints){if(other.gameObject == stopPoint){colTrigger = true;}}
+        if(colTrigger == true){
+          startMovement(false);
+        other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        other.transform.parent = this.transform;
+        other.gameObject.transform.position = transform.position;
+      }
       }
    }
 

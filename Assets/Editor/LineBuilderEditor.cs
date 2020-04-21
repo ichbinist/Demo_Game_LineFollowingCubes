@@ -19,6 +19,10 @@ public class LineBuilderEditor : Editor
           {
               script.addEnd();
           }
+          if(GUILayout.Button("Add Stop Point "))
+          {
+              script.addStop();
+          }
           if(GUILayout.Button("Reset Points"))
           {
               script.resetPoints();
