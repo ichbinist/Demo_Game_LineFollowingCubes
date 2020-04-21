@@ -9,20 +9,22 @@ public class Line_Render : MonoBehaviour
     public GameObject linePoint;
     public GameObject finishingPoint;
     public GameObject stopPoint;
+    public int team = 0;
     public bool collision = false;
     public bool isfinished = false;
     public bool isadded = false;
     public float speed = 6f;
+    public bool clicked = false;
     [Header("Add New Points to Position")]
     public Vector3 position = new Vector3(0,0,0);
     [Header("Points to Draw Line and to follow")]
     public List<GameObject> linePoints;
-
+    public bool movestart = false;
     //Privates
     [SerializeField]
     private LineRenderer linerender;
     private int i = 1;
-    private bool movestart = false;
+    private GameObject controller;
 
     [SerializeField]
     private GameObject[] obstacles;
@@ -33,8 +35,32 @@ public class Line_Render : MonoBehaviour
         linerender = GetComponent<LineRenderer>();
         linerender.SetWidth(0.2f,0.2f);
         obstacles = GameObject.FindGameObjectsWithTag("obstacle");
+        teamcolor();
+        controller = GameObject.FindGameObjectWithTag("controller");
     }
 
+    void teamcolor(){
+      switch (team)
+      {
+      case 0:
+          GetComponent<Renderer>().material.color = Color.blue;
+          break;
+      case 1:
+          GetComponent<Renderer>().material.color = Color.black;
+          break;
+      case 2:
+          GetComponent<Renderer>().material.color = Color.yellow;
+          break;
+      case 3:
+          GetComponent<Renderer>().material.color = Color.green;
+          break;
+      case 4:
+          GetComponent<Renderer>().material.color = Color.red;
+          break;
+      default:
+          break;
+      }
+    }
     public void addPoint(){
       GameObject Addedobject = Instantiate(linePoint, transform.position+position, Quaternion.identity);
       linePoints.Add(Addedobject);
@@ -74,10 +100,12 @@ public class Line_Render : MonoBehaviour
      foreach(GameObject obstacle in obstacles){
        obstacle.GetComponent<Obstacle_Control>().switchactive();
      }
+     controller.GetComponent<Game_Controller>().TeamMovement(team);
   }
 
     void startMovement(bool start){
       movestart = start;
+      clicked = false;
     }
 
     public void resetPoints(){
