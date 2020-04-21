@@ -115,13 +115,16 @@ MonoBehaviour:
     type: 3}
   stopPoint: {fileID: 8194571345831256520, guid: 9ff09bf2aa39541409e57a9eb9d3c494,
     type: 3}
+  team: 0
   collision: 0
   isfinished: 0
   isadded: 0
   speed: 8
+  clicked: 0
   position: {x: 0, y: 0, z: 0}
   linePoints:
   - {fileID: 9095303081605824224}
+  movestart: 0
   linerender: {fileID: 7020399528995674999}
   obstacles: []
 --- !u!54 &-3062142223039264579
