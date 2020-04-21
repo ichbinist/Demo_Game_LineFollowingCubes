@@ -21,18 +21,13 @@ public class Game_Controller : MonoBehaviour
         }
         if(finishcount >= cubes.Length){
           Debug.Log("Scene Finished");
+          Application.LoadLevel(Application.loadedLevel+1);
           gameObject.SetActive(false);
         }
     }
 
     public void TeamMovement(int i){
       foreach(GameObject cube in cubes){
-      /*if(cube.GetComponent<Line_Render>().movestart == true){
-        teams[cube.GetComponent<Line_Render>().team] = true;
-      }else if(cube.GetComponent<Line_Render>().movestart == true){
-        teams[cube.GetComponent<Line_Render>().team] = false;
-      }*/
-
       if(cube.GetComponent<Line_Render>().team != 0 && cube.GetComponent<Line_Render>().team == i){
         cube.GetComponent<Line_Render>().movestart = true;
       }
