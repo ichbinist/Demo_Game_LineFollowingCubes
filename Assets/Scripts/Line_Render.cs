@@ -15,7 +15,7 @@ public class Line_Render : MonoBehaviour
     public List<GameObject> linePoints;
     //Privates
     [SerializeField]
-    private LineRenderer linerender;
+    public LineRenderer linerender;
     private int i = 1;
     private bool movestart = false;
     public bool collision = false;
@@ -23,35 +23,31 @@ public class Line_Render : MonoBehaviour
     public bool isadded = false;
     void Start()
     {
+        linerender = GetComponent<LineRenderer>();
         linerender.SetWidth(0.2f,0.2f);
-    }
-
-    void setLinePoints(){
-      foreach (Transform child in gameObject.transform){if(child.CompareTag("point")){linePoints.Add(child.gameObject);} }
     }
 
     public void addPoint(){
       linerender = GetComponent<LineRenderer>();
       GameObject Addedobject = Instantiate(linePoint, transform.position+position, Quaternion.identity);
-      //Addedobject.transform.parent = transform;
       linePoints.Add(Addedobject);
     }
 
     public void addEnd(){
 
       GameObject Addedobject = Instantiate(finishingPoint, transform.position+position, Quaternion.identity);
-      //Addedobject.transform.parent = transform;
       linePoints.Add(Addedobject);
     }
 
     public void PointsToLine(){
-
       if(gameObject.GetComponent<LineRenderer>() == null){
         linerender = gameObject.AddComponent<LineRenderer>();
         linerender.SetVertexCount(linePoints.Count);
         for (int i = 0; i < linePoints.Count; i++){
          linerender.SetPosition(i, linePoints[i].transform.position);
         }
+      }else if(linerender == null){
+        linerender = GetComponent<LineRenderer>();
       }else{
       linerender = GetComponent<LineRenderer>();
       linerender.SetVertexCount(linePoints.Count);
