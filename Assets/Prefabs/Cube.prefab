@@ -113,14 +113,15 @@ MonoBehaviour:
     type: 3}
   finishingPoint: {fileID: 5450943292744097304, guid: 0121e7d84b3159442b18f698febfe3b1,
     type: 3}
+  collision: 0
+  isfinished: 0
+  isadded: 0
   speed: 8
   position: {x: 0, y: 0, z: 0}
   linePoints:
   - {fileID: 9095303081605824224}
   linerender: {fileID: 7020399528995674999}
-  collision: 0
-  isfinished: 0
-  isadded: 0
+  obstacles: []
 --- !u!54 &-3062142223039264579
 Rigidbody:
   m_ObjectHideFlags: 0

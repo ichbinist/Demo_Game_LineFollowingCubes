@@ -8,23 +8,30 @@ public class Line_Render : MonoBehaviour
     //Publics
     public GameObject linePoint;
     public GameObject finishingPoint;
+    public bool collision = false;
+    public bool isfinished = false;
+    public bool isadded = false;
     public float speed = 6f;
     [Header("Add New Points to Position")]
     public Vector3 position = new Vector3(0,0,0);
     [Header("Points to Draw Line and to follow")]
     public List<GameObject> linePoints;
+
     //Privates
     [SerializeField]
-    public LineRenderer linerender;
+    private LineRenderer linerender;
     private int i = 1;
     private bool movestart = false;
-    public bool collision = false;
-    public bool isfinished = false;
-    public bool isadded = false;
+
+    [SerializeField]
+    private GameObject[] obstacles;
+
+
     void Start()
     {
         linerender = GetComponent<LineRenderer>();
         linerender.SetWidth(0.2f,0.2f);
+        obstacles = GameObject.FindGameObjectsWithTag("obstacle");
     }
 
     public void addPoint(){
@@ -55,11 +62,13 @@ public class Line_Render : MonoBehaviour
        linerender.SetPosition(i, linePoints[i].transform.position);
       }
     }
-
     }
 
     void OnMouseDown(){
      startMovement();
+     foreach(GameObject obstacle in obstacles){
+       obstacle.GetComponent<Obstacle_Control>().switchactive();
+     }
   }
 
     void startMovement(){
@@ -93,7 +102,8 @@ public class Line_Render : MonoBehaviour
      Debug.Log("Collision");
       if (other.CompareTag("cube")){
         Application.LoadLevel(Application.loadedLevel);
-        Debug.Log("Collision");
+      }else if (!other.CompareTag("point") && other.transform.parent.CompareTag("obstacle") && other.transform.parent.GetComponent<Obstacle_Control>().active){
+        Application.LoadLevel(Application.loadedLevel);
       }
    }
 
